@@ -207,7 +207,10 @@ export class MessageContent {
     public reply!: Reply // 回复
 
     mention?: Mention
+    entities?:any[]
     contentObj: any
+    files?:File
+    size?:number
     public encode(): Uint8Array {
         const contentObj = this.encodeJSON()
         contentObj.type = this.contentType
@@ -224,7 +227,12 @@ export class MessageContent {
         if (this.reply) {
             contentObj["reply"] = this.reply.encode()
         }
-
+        if(this.entities){
+            contentObj["entities"] = this.entities
+        }
+        if(this.size){
+            contentObj["size"] = this.size
+        }
         const contentStr = JSON.stringify(contentObj)
         return stringToUint8Array(contentStr)
     }
@@ -250,6 +258,14 @@ export class MessageContent {
             const reply = new Reply()
             reply.decode(replyObj)
             this.reply = reply
+        }
+        const entitiesObj = contentObj["entities"]
+        if(entitiesObj){
+            this.entities = contentObj["entities"]
+        }
+        const fileObj = contentObj["size"]
+        if(fileObj){
+            this.size = contentObj["size"]
         }
         this.visibles = contentObj["visibles"]
         this.invisibles = contentObj["invisibles"]
