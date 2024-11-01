@@ -731,10 +731,10 @@ export class SystemContent extends MessageContent {
             if (extraArray && extraArray.length > 0) {
                 for (let i = 0; i <= extraArray.length - 1; i++) {
                     const extrMap = extraArray[i]
-                    const name = extrMap["name"] || ""
-                    // if(WKSDK.shared().config.uid === extrMap["uid"] ) {
-                    //     name = "你"
-                    // }
+                    let name = extrMap["name"] || ""
+                    if(WKSDK.shared().config.uid === extrMap["uid"] ) {
+                        name = "你"
+                    }
                     content = content.replace(`{${i}}`, name)
                 }
             }
