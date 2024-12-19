@@ -666,6 +666,39 @@ export class MessageImage extends MediaMessageContent {
     }
 }
 
+export class MessageGif extends MessageContent {
+  width!: number; // 图片宽度
+  height!: number; // 图片高度
+  private _url!: string; // 图片远程地址
+  constructor( width?: number, height?: number) {
+      super();
+      this.width = width || 0;
+      this.height = height || 0;
+  }
+
+  set url (ul: string) {
+      this._url = ul
+      this.url = ul
+  }
+  get url () {
+      return this._url
+  }
+  decodeJSON(content: any) {
+      this.width = content["width"] || 0
+      this.height = content["height"] || 0
+      this.url = content["url"] || ''
+  }
+  encodeJSON() {
+      return { "width": this.width || 0, "height": this.height || 0, "url": this.url || "" }
+  }
+  get contentType() {
+      return MessageContentType.gif
+  }
+  get conversationDigest() {
+      return "[动图]"
+  }
+}
+
 export class MessageStream extends MessageContent {
     data!: ArrayBuffer
     constructor(data: ArrayBuffer) {

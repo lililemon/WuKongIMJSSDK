@@ -6,7 +6,7 @@ import { TaskManager } from "./task";
 import { ConversationManager } from "./conversation_manager";
 import { SecurityManager } from "./security";
 
-import { Channel, ChannelInfo, MediaMessageContent, Message, MessageContent, MessageContentManager, CMDContent, MessageSignalContent, MessageText, SystemContent, SubscribeOption, SubscribeListener, UnsubscribeListener, MessageImage } from "./model";
+import { Channel, ChannelInfo, MediaMessageContent, Message, MessageContent, MessageContentManager, CMDContent, MessageSignalContent, MessageText, SystemContent, SubscribeOption, SubscribeListener, UnsubscribeListener, MessageImage, MessageGif } from "./model";
 import { ReminderManager } from "./reminder_manager";
 import { WKConfig } from "./config";
 import { ReceiptManager } from "./receipt_manager";
@@ -62,6 +62,7 @@ export default class WKSDK {
         this.register(MessageContentType.text, () => new MessageText())
         // 注册图片消息
         this.register(MessageContentType.image, () => new MessageImage())
+        this.register(MessageContentType.gif, () => new MessageGif())
         this.register(MessageContentType.signalMessage, () => new MessageSignalContent())
     }
     // 注册消息正文

@@ -3,6 +3,7 @@ export class MessageContentType {
     static unknown:number = 0 // 未知消息
     static text:number = 1 // 文本消息
     static image:number = 2 // 图片
+    static gif:number = 3 // gif
     static stream:number = 98 // 流式消息
     static cmd:number = 99 // cmd
 
