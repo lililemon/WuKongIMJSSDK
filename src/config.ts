@@ -9,10 +9,10 @@ export class WKConfig {
     addr!: string // 连接地址
     uid?: string  // 用户uid
     token?: string // 认证token
-    protoVersion = 4 // 协议版本号
+    protoVersion = 5 // 协议版本号
     deviceFlag = 1 // 设备标识  0: app 1. web 2. pc
     proto: IProto = new Proto();
-    heartbeatInterval: number = 60000; // 心跳频率 单位毫秒
+    heartbeatInterval: number = 5000; // 心跳频率 单位毫秒
     provider!: Provider
     receiptFlushInterval:number = 2000 // 回执flush间隔 单位为毫秒ms
     sdkVersion = "1.2.8" // SDK版本号
